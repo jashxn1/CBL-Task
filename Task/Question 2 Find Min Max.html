@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Min Max</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <script>
-    
-    const arr = [10,2,3,7,5,6,70,40];
-    for (let i = 0; i < arr.length; i++) {
-        var min = i;
-        for (var j = i + 1; j < arr.length; j++) {
-            if (arr[min] > arr[j]) {
-                min = j;    
+
+    const arr = [10, 2, 3, 7, 5, 6, 70, 40];
+    function minmax(arr) {
+        if (arr.length === 0) {
+            return { min: undefined, max: undefined };
+        }
+
+        let min = arr[0];
+        let max = arr[0];
+
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+            if (arr[i] > max) {
+                max = arr[i];
             }
         }
-        //SWAP
-        let temp = arr[i];
-        arr[i] = arr[min];
-        arr[min] = temp;
+
+        return { min, max };
     }
-    let minval = arr[0];
-    //Max
-   let max=arr[arr.length-1]
-    
-    console.log("Min Value is : " + minval);
+
+    const { min, max } = minmax(arr);
+    console.log("Min Value is : " + min);
     console.log("Max Value is : " + max);
 </script>
