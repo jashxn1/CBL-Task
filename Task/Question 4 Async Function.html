@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Function</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    TitleArray = [];
+    async function Data() {
+        try {
+            let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+            if (!response.ok) {
+                throw new Error("Data Not Found!");
+            }
+            let res = await response.json();
+            return res;
+        } catch (error) {
+            throw new Error("Error: " + error);
+        }
+    }
+    async function DisplayData() {
+        try {
+            let userData = await Data();
+            for (let i = 0; i < 5; i++) {
+                TitleArray.push(userData[i].title);
+            }
+        } catch (error) {
+            console.error("Required Data Not Found")
+        }
+    }
+    DisplayData().then(() => {
+    console.log(TitleArray);
+    })
+</script>
